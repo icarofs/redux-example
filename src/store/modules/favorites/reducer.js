@@ -1,9 +1,22 @@
 const INITIAL_STATE = {
-  configInicial: 'Configuração Inicial',
+  loading: false,
+  data: [],
+  error: null,
 };
 
-export default function CONFIGURACAO_INICIAL(state = INITIAL_STATE, action) {
+export default function favorites(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case '@type/FAVORITE_REQUEST':
+      return { ...state, loading: true };
+    case '@type/FAVORITE_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        data: [...state.data, action.payload.data],
+      };
+    case '@type/FAVORITE_FAILURE':
+      return { ...state, loading: false, error: action.payload.error };
     default:
       return state;
   }
