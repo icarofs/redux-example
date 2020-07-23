@@ -1,3 +1,5 @@
+import produce from 'immer';
+
 const INITIAL_STATE = {
   loading: false,
   data: [],
@@ -7,16 +9,21 @@ const INITIAL_STATE = {
 export default function favorites(state = INITIAL_STATE, action) {
   switch (action.type) {
     case '@type/FAVORITE_REQUEST':
-      return { ...state, loading: true };
+      return produce(state, (draft) => {
+        draft.loading = true;
+      });
     case '@type/FAVORITE_SUCCESS':
-      return {
-        ...state,
-        loading: false,
-        error: null,
-        data: [...state.data, action.payload.data],
-      };
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.error = null;
+        draft.data = [...state.data, action.payload.data];
+      });
+
     case '@type/FAVORITE_FAILURE':
-      return { ...state, loading: false, error: action.payload.error };
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.error = action.payload.error;
+      });
     default:
       return state;
   }
