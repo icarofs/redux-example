@@ -1,12 +1,10 @@
  <h1>
  <br/>
-  🚀 Basic React template with javascript 🚀
+  🚀 Redux Example 🚀
   <br>
 </h1>
 
-## Configured tools
+## Sobre
 
-- EsLint
-- Prettier
-- EditorConfig
+Projeto com objetivo de reforçar os estudos de Redux e Redux-Saga
 
